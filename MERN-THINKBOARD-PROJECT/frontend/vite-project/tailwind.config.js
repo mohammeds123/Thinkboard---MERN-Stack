@@ -11,6 +11,6 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ["luxury", "forest", "business"],
+    themes: ["luxury"],
   }
 }
