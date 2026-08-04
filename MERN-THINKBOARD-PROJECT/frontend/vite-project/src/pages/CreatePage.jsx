@@ -8,7 +8,12 @@ const CreatePage = () => {
   const [content, setContent] = useState("")
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(title)
+    console.log(content)
+  }
+
   return (
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
