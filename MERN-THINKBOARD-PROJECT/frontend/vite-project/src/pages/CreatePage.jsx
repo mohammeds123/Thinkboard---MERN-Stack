@@ -25,9 +25,10 @@ const CreatePage = () => {
                   <label className="label">
                     <span className="label-text">Title</span>
                   </label>
-                  <input type ="text"
+                  <input 
+                  type ="text"
                   placeholder="Note Title"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   />
@@ -39,14 +40,14 @@ const CreatePage = () => {
                   </label>
                   <input type ="text"
                   placeholder="Write your Note here..."
-                  className="textarea textarea-bordered h-32"
+                  className="textarea textarea-bordered h-32 w-full"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   />
                 </div>
 
                 <div className="card-actions justify-end">
-                  <button type="submit" className="btn btn-primary" disabled={loading}>
+                  <button type="submit" className="btn btn-primary mt-5" disabled={loading}>
                     {loading ? "Creating..." : "Create Note"}
                   </button>
                 </div>
