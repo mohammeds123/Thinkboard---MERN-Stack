@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router"
 import {ArrowLeftIcon} from "lucide-react"
 import {useState} from 'react'
+import { toast } from 'react-hot-toast'
 
 const CreatePage = () => {
   const [title, setTitle] = useState("")
@@ -10,8 +11,11 @@ const CreatePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(title)
-    console.log(content)
+    
+    if(!title.trim() || !content.trim()){
+      toast.error("All fields are required")
+      return
+    }
   }
 
   return (
