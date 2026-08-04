@@ -26,8 +26,12 @@ const CreatePage = () => {
       toast.success("Note created successfully!")
       navigate("/")
     } catch (error) {
-      toast.error("Error creating note")
       console.log("Error creating note:", error)
+      if (error.response?.status === 429) {
+        toast.error("Rate limit exceeded. Please try again later.", { duration: 4000 , icon: "🫵"})
+      } else {
+        toast.error("Failed to create note.")
+      }
     }
     finally{
       setLoading(false)
