@@ -10,7 +10,7 @@ const CreatePage = () => {
 
   const handleSubmit = () => {}
   return (
-    <div className="min-h-screen beg-base-200">
+    <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           <Link to={"/"} className="btn btn-ghost mb-6">
@@ -43,6 +43,12 @@ const CreatePage = () => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   />
+                </div>
+
+                <div className="card-actions justify-end">
+                  <button type="submit" className="btn btn-primary" disabled={loading}>
+                    {loading ? "Creating..." : "Create Note"}
+                  </button>
                 </div>
               </form>
             </div>
