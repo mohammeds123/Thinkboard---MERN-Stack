@@ -2,8 +2,24 @@ import { PenSquareIcon, Trash2Icon } from 'lucide-react'
 import React from 'react'
 import {Link} from "react-router"
 import { formatDate } from '../lib/utils.js'
+import axiosInstance from '../lib/axios.js'
 
 const NoteCard = ({note}) => {
+
+    const handleDelete = async (e,id) => {
+        e.preventDefault() //get rid of naviagation
+
+        if (!window.confirm('Are you sure you want to delete this note?')) {
+            return
+        }
+        try{
+            await axiosInstance.delete(`/notes/${id}`)
+
+        }catch(error){
+            console.error('Error deleting note:', error)
+        }
+    }
+
   return <Link to={'/note/${note._id}'}
   className="card bg-base-100 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-[#D4AF37]">
     <div className ="card-body">
@@ -13,7 +29,7 @@ const NoteCard = ({note}) => {
             <span className="text-sm text-base-content/60"> {formatDate(new Date)} </span>
             <div className="flex items-center gap-1">
                 <PenSquareIcon className="size-4"/>
-                <button className="btn btn-ghost btn-xs text-error">
+                <button className="btn btn-ghost btn-xs text-error" onClick={(e) => handleDelete(e, note._id)}>
                     <Trash2Icon className="size-4" />
                 </button>
             </div>
