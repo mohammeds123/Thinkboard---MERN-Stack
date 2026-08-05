@@ -5,7 +5,7 @@ import { formatDate } from '../lib/utils.js'
 import axiosInstance from '../lib/axios.js'
 import { toast } from 'react-hot-toast'
 
-const NoteCard = ({note}) => {
+const NoteCard = ({note, setNotes}) => {
 
     const handleDelete = async (e,id) => {
         e.preventDefault() //get rid of naviagation
@@ -15,6 +15,7 @@ const NoteCard = ({note}) => {
         }
         try{
             await axiosInstance.delete(`/notes/${id}`)
+            setNotes((prev) => prev.filter(note => note._id !== id))
             toast.success('Note deleted successfully')
 
         }catch(error){
