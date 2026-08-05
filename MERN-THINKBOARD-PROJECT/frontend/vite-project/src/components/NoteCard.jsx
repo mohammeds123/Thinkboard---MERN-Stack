@@ -3,6 +3,7 @@ import React from 'react'
 import {Link} from "react-router"
 import { formatDate } from '../lib/utils.js'
 import axiosInstance from '../lib/axios.js'
+import { toast } from 'react-hot-toast'
 
 const NoteCard = ({note}) => {
 
@@ -14,9 +15,11 @@ const NoteCard = ({note}) => {
         }
         try{
             await axiosInstance.delete(`/notes/${id}`)
+            toast.success('Note deleted successfully')
 
         }catch(error){
             console.error('Error deleting note:', error)
+            toast.error('Error deleting note')
         }
     }
 
