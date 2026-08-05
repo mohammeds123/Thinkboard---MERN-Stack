@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router'
-import axiosInstance from '../lib/axios'
-import { toast } from 'react-hot-toast'
-import { LoaderIcon } from 'lucide-react'
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
+import axiosInstance from "../lib/axios";
+import toast from "react-hot-toast";
+import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from "lucide-react";
 
 const NoteDetailPage = () => {
   const [note, setNote] = useState(null)
@@ -16,7 +17,7 @@ const NoteDetailPage = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try{
-        const res= await axiosInstance.get(`/notes/${id}`)
+        const res = await axiosInstance.get(`/notes/${id}`)
         setNote(res.data)
       } catch(error){
         toast.error('Failed to load note')
@@ -29,6 +30,8 @@ const NoteDetailPage = () => {
     fetchNote()
   }, [id])
 
+  const handleDelete = () => {}
+
   if (loading) {
     return (
       <div className="min-h-screen bg-base-200 flex items-center justify-center">
@@ -40,7 +43,21 @@ const NoteDetailPage = () => {
   return (
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
-        
+        <div className="max-w-2xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+          <Link to={`/`} className="btn btn-ghost">
+            ← Back to Notes
+          </Link>
+          <button onClick={handleDelete} className="btn btn-error btn-outline">
+            <Trash2Icon className="h-5 w-5" />
+            Delete Note
+          </button>
+          </div>
+          <div className="card bg-base-100">
+            <div className="card-body">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const res = await axiosInstance.get('/notes')
+        const res = await axiosInstance.get(`/notes`)
         console.log(res.data)
         setNotes(res.data)
         setIsRateLimited(false)
