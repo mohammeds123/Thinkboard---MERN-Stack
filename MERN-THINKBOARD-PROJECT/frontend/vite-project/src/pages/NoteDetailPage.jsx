@@ -30,7 +30,37 @@ const NoteDetailPage = () => {
     fetchNote()
   }, [id])
 
-  const handleDelete = () => {}
+  const handleDelete = () => {
+    if (!window.confirm('Are you sure you want to delete this note?')) {
+      return
+    }
+    try{
+      axiosInstance.delete(`/notes/${id}`)
+      toast.success('Note deleted successfully')
+      navigate('/')
+    } catch(error){
+      console.error('Error deleting note:', error)
+      toast.error('Failed to delete note')
+    }
+  }
+  const handleSave = async () => {
+    if (!note.title.trim() || !note.content.trim()) {
+      toast.error('Title and content cannot be empty')
+      return
+    }
+    setSaving(true)
+    try{
+      await axiosInstance.put(`/notes/${id}`, note)
+      toast.success('Note updated successfully')
+      navigate('/')
+    } catch(error){
+      console.error('Error updating note:', error)
+      toast.error('Failed to update note')
+
+    } finally {
+      setSaving(false)
+    }
+  }
 
   if (loading) {
     return (
@@ -53,8 +83,38 @@ const NoteDetailPage = () => {
             Delete Note
           </button>
           </div>
+
           <div className="card bg-base-100">
             <div className="card-body">
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">Title</span>
+                </label>
+                <input 
+                  type ="text"
+                  placeholder="Note Title"
+                  className="input input-bordered"
+                  value={note.title}
+                  onChange={(e) => setNote({...note, title: e.target.value})}
+                />
+              </div>
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">Content</span>
+                </label>
+                <textarea
+                  placeholder="Note Content"
+                  className="textarea textarea-bordered h-32"
+                  value={note.content}
+                  onChange={(e) => setNote({...note, content: e.target.value})}
+                />
+              </div>
+
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary" onClick={handleSave} disabled={saving}>
+                  {saving ? "Saving..." : "Save Changes"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
