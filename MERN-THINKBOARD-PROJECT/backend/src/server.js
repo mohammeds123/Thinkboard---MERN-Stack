@@ -14,7 +14,6 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 
-
 // Middleware
 if(process.env.NODE_ENV !== "production") {
   app.use(cors({
@@ -46,7 +45,3 @@ connectDB().then(() => {
     console.log(`Server is running on PORT ${PORT}`);
   });
 });
-
-// mohammedolx88_db_user
-// wsCf2I5WSzyz6Ssk
-// mongodb+srv://mohammedolx88_db_user:wsCf2I5WSzyz6Ssk@cluster0.pxsdscq.mongodb.net/?appName=Cluster0
