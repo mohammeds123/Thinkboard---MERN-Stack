@@ -110,7 +110,7 @@ Run these from `MERN-THINKBOARD-PROJECT/`:
 
 | Command | Description |
 |---------|-------------|
-| `npm run build` | Install deps & build the frontend for production |
+| `npm run build` | Install dependencies & build the frontend for production |
 | `npm run start` | Start the production backend server |
 
 ---
