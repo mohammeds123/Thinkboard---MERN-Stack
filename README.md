@@ -141,10 +141,4 @@ Add `MONGO_URI`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and `NODE
 
 ---
 
-## 👤 Author
-
-**Mohammed** — [GitHub](https://github.com/mohammeds123)
-
----
-
 <p align="center">Made with 💜 using the MERN stack</p>
